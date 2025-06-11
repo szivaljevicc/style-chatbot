@@ -11,7 +11,7 @@ def get_avatar_base64(path):
     with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-avatar_base64 = get_avatar_base64("C:/Users/Sasa Zivaljevic/Desktop/logo.png")
+avatar_base64 = get_avatar_base64("logo.png")
 
 # Streamlit page config
 st.set_page_config(page_title="Style Assistant Chatbot", page_icon="🧵", layout="centered")
