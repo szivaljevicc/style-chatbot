@@ -1,4 +1,5 @@
 
+import json
 import streamlit as st
 from streamlit_chat import message
 import base64
@@ -139,7 +140,9 @@ SPREADSHEET_ID_IDENTITY = '1Eh1yjfanZz6TW0HEFzb0tbED7Co5yCEAA30zhniYtG4'
 SHEET_NAME_IDENTITY = 'Form Responses 1'
 
 client = OpenAI(api_key=st.secrets["openai_api_key"])
-creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', SCOPES)
+
+creds = ServiceAccountCredentials.from_json_keyfile_dict(st.secrets["google_service_account"])
+
 gs_client = gspread.authorize(creds)
 sheet_identity = gs_client.open_by_key(SPREADSHEET_ID_IDENTITY).worksheet(SHEET_NAME_IDENTITY)
 data_IDENTITY = sheet_identity.get_all_records()
